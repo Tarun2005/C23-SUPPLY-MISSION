@@ -60,7 +60,7 @@ function setup() {
 
  	boxRightBody = Bodies.rectangle(boxPosition+200-20 , boxY, 20,100 , {isStatic:true} );
  	World.add(world, boxRightBody);
-
+    
 
 	Engine.run(engine);
   
@@ -70,13 +70,26 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
- 
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
+  packageSprite.x = helicopterSprite.x
+  mission();
 
-  
   drawSprites();
   
   
  
+}
+
+function mission() {
+
+	if (keyDown("right")){ 
+		helicopterSprite.x = helicopterSprite.x + 5
+	}
+	if (keyDown("left")){
+		helicopterSprite.x = helicopterSprite.x - 5
+	}
+	if (keyDown("down")){
+		Matter.Body.setStatic(packageBody, false);
+	}
 }
